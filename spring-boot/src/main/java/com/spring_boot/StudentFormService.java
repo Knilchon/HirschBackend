@@ -44,14 +44,12 @@ public class StudentFormService {
         this.kontaktpersonAdresseService = kontaktpersonAdresseService;
     }
 
-
     @Transactional
     public String saveStudentForm(StudentForm studentForm) {
-        Adresse adresse = StudentFormObjectMapper.mapToAdresse(studentForm);
-        adresseService.saveAdresse(adresse);
 
-        Betrieb betrieb = StudentFormObjectMapper.mapToBetrieb(studentForm);
-        betriebService.saveBetrieb(betrieb);
+        Adresse adresse = adresseService.getOrCreateAdresse(StudentFormObjectMapper.mapToAdresse(studentForm));
+
+        Betrieb betrieb = betriebService.getOrCreateBetrieb(StudentFormObjectMapper.mapToBetrieb(studentForm));
 
         Schulbesuch schulbesuch = StudentFormObjectMapper.mapToSchulbesuch(studentForm);
         schulbesuchService.saveSchulbesuch(schulbesuch);
@@ -60,11 +58,11 @@ public class StudentFormService {
         schueler.setAdresse(adresse);
         schueler.setSchulbesuch(schulbesuch);
 
-        schuelerService.saveSchueler(schueler);
+        schueler = schuelerService.getOrCreateSchueler(schueler);
 
         Kontaktperson kontaktperson = StudentFormObjectMapper.mapToKontaktperson(studentForm);
         kontaktperson.setBetrieb(betrieb);
-        kontaktpersonService.saveKontaktperson(kontaktperson);
+        kontaktperson = kontaktpersonService.getOrCreateKontaktperson(kontaktperson);
 
         SchuelerKontaktperson schuelerKontaktperson = new SchuelerKontaktperson();
         schuelerKontaktperson.setSchueler(schueler);
@@ -75,7 +73,6 @@ public class StudentFormService {
         kontaktpersonAdresse.setAdresse(adresse);
         kontaktpersonAdresse.setKontaktperson(kontaktperson);
         kontaktpersonAdresseService.save(kontaktpersonAdresse);
-
 
         return "success";
     }

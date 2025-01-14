@@ -16,11 +16,6 @@ public class WochentagkombinationController {
         this.wochentagkombinationService = wochentagkombinationService;
     }
 
-    @GetMapping("/")
-    public String getRootResponse() {
-        return "";
-    }
-
     @PutMapping("/submit")
     public String postWeekdayCombos(@RequestBody List<String> wochentagkombinations) {
         wochentagkombinationService.saveAllWeekdayCombos(wochentagkombinations);
