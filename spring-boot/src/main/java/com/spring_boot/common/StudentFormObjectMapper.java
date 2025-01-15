@@ -46,16 +46,6 @@ public class StudentFormObjectMapper {
         return betrieb;
     }
 
-    public static Kontaktperson mapToKontaktperson(StudentForm studentForm) {
-        Kontaktperson kontaktPerson = new Kontaktperson();
-        kontaktPerson.setAnrede(studentForm.getAnredeKontaktperson());
-        kontaktPerson.setVorname(studentForm.getVornameKontaktperson());
-        kontaktPerson.setNachname(studentForm.getNachnameKontaktperson());
-        kontaktPerson.setTelefonnummer(studentForm.getTelefonnummerKontaktperson());
-        kontaktPerson.setIstNotfallkontakt(studentForm.getIstNotfallkontakt());
-        return kontaktPerson;
-    }
-
     public static Schulbesuch mapToSchulbesuch(StudentForm studentForm) {
         Schulbesuch schulbesuch = new Schulbesuch();
         schulbesuch.setAbschlussjahr(studentForm.getAbschlussjahr());
