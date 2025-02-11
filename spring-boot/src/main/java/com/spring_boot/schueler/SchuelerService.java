@@ -1,10 +1,10 @@
 package com.spring_boot.schueler;
 
-import com.spring_boot.betrieb.Betrieb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,4 +31,14 @@ public class SchuelerService {
         return existingSchueler.get();
     }
 
+    @Transactional
+    public Schueler getSchuelerByID(String id) {
+        Optional<Schueler> optSchueler = schuelerRepository.findById(Long.parseLong(id));
+        return optSchueler.orElse(null);
+    }
+
+    @Transactional
+    public List<Schueler> getAllSchueler() {
+       return schuelerRepository.findAll();
+    }
 }

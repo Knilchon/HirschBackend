@@ -15,6 +15,7 @@ import com.spring_boot.schuelerkontaktperson.SchuelerKontaktpersonService;
 import com.spring_boot.schulbesuch.Schulbesuch;
 import com.spring_boot.schulbesuch.SchulbesuchService;
 import com.spring_boot.schueler.SchuelerService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class StudentFormService {
 
+    @Getter
     private final SchuelerService schuelerService;
     private final AdresseService adresseService;
     private final BetriebService betriebService;
@@ -76,5 +78,4 @@ public class StudentFormService {
 
         return "success";
     }
-
 }
