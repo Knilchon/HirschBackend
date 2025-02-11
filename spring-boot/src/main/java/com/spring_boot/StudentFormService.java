@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 public class StudentFormService {
 
@@ -62,10 +64,29 @@ public class StudentFormService {
 
         schueler = schuelerService.getOrCreateSchueler(schueler);
 
+        for(Kontaktperson kontaktperson : studentForm.getKontakpersonen()) {
+            if (Objects.equals(kontaktperson.getKontaktart(), "Betrieb")) {
+                kontaktperson.setBetrieb(betrieb);
+            }
+            kontaktperson = kontaktpersonService.getOrCreateKontaktperson(kontaktperson);
+
+            SchuelerKontaktperson schuelerKontaktperson = new SchuelerKontaktperson();
+            schuelerKontaktperson.setSchueler(schueler);
+            schuelerKontaktperson.setKontaktperson(kontaktperson);
+            schuelerKontaktpersonService.save(schuelerKontaktperson);
+
+            KontaktpersonAdresse kontaktpersonAdresse = new KontaktpersonAdresse();
+            kontaktpersonAdresse.setAdresse(adresse);
+            kontaktpersonAdresse.setKontaktperson(kontaktperson);
+            kontaktpersonAdresseService.save(kontaktpersonAdresse);
+        }
+
+        /*
         Kontaktperson kontaktperson = StudentFormObjectMapper.mapToKontaktperson(studentForm);
         kontaktperson.setBetrieb(betrieb);
-        kontaktperson = kontaktpersonService.getOrCreateKontaktperson(kontaktperson);
+        kontaktperson = kontaktpersonService.getOrCreateKontaktperson(kontaktperson);*/
 
+        /*
         SchuelerKontaktperson schuelerKontaktperson = new SchuelerKontaktperson();
         schuelerKontaktperson.setSchueler(schueler);
         schuelerKontaktperson.setKontaktperson(kontaktperson);
@@ -74,7 +95,7 @@ public class StudentFormService {
         KontaktpersonAdresse kontaktpersonAdresse = new KontaktpersonAdresse();
         kontaktpersonAdresse.setAdresse(adresse);
         kontaktpersonAdresse.setKontaktperson(kontaktperson);
-        kontaktpersonAdresseService.save(kontaktpersonAdresse);
+        kontaktpersonAdresseService.save(kontaktpersonAdresse);*/
 
         return "success";
     }

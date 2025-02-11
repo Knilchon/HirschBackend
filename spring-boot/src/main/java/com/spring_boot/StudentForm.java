@@ -1,6 +1,11 @@
 package com.spring_boot;
 
+import com.spring_boot.kontaktperson.Kontaktperson;
+import com.spring_boot.schuelerkontaktperson.SchuelerKontaktperson;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class StudentForm {
@@ -37,12 +42,8 @@ public class StudentForm {
     private String wochentagkombowunsch1;
     private String wochentagkombowunsch2;
 
-    //Kontaktperson
-    private String anredeKontaktperson;
-    private String vornameKontaktperson;
-    private String nachnameKontaktperson;
-    private String telefonnummerKontaktperson;
-    private Boolean istNotfallkontakt;
+    //SchuelerKontaktperson
+    private List<Kontaktperson> kontakpersonen = new ArrayList<>();
 
     //Betrieb
     private String nameBetrieb;

@@ -17,6 +17,7 @@ public class Kontaktperson {
     private String nachname;
     private String telefonnummer;
     private Boolean istNotfallkontakt;
+    private String kontaktart;
 
     @ManyToOne
     @JoinColumn(name = "betriebID")
