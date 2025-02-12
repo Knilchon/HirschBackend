@@ -6,8 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
 @Entity
 public class Student {
@@ -18,7 +16,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String gender;
-    private LocalDate birthDate;
+    private String birthDate;
     private String birthPlace;
     private String birthCountry;
     private String nationality;
