@@ -5,16 +5,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Wochentagkombination {
+@Table(name = "weekdaycombo")
+public class WeekdayCombo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wochentagkombinationID;
+    private Long weekday_comboid;
 
-    private String wochentagkombo;
-    private boolean istAktiv;
+    private String weekdayCombo;
+    private boolean isActive;
 
-    public Wochentagkombination() {
+    public WeekdayCombo() {
     }
 
 }
