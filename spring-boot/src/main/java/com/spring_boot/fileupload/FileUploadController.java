@@ -22,7 +22,7 @@ public class FileUploadController {
             throw new RuntimeException("File is empty");
         }
 
-        String uploadDir = "C:/uploads/";
+        String uploadDir = System.getProperty("user.home") + "/uploads/";
         try {
             File directory = new File(uploadDir);
             if (!directory.exists()) {
