@@ -35,6 +35,9 @@ public class StudentController {
     }
 
     @GetMapping("/get-all")
-    public List<Student> getAllStudents() { return studentService.getAllStudents(); }
+    public List<Student> getAllStudents() { return studentService.getAllStudentsSortedByCreatedAt(); }
+
+    @GetMapping("/filter-by-apprenticeship/{filtervalue}")
+    public List<Student> getAllFilteredByApprenticeship(@PathVariable String filtervalue) { return studentService.getAllStudentsFilteredByApprenticeship(filtervalue); }
 
 }

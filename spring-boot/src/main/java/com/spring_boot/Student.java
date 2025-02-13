@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 public class Student {
@@ -68,6 +71,6 @@ public class Student {
     private String workEducation;
     private String schoolRelation;
     private String apprenticeshipContract;
-
+    private LocalDateTime createdAt;
 }
 

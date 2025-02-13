@@ -1,6 +1,7 @@
 package com.spring_boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,9 @@ public class StudentService {
     }
 
     @Transactional
-    public List<Student> getAllStudents() { return studentRepository.findAll(); }
+    public List<Student> getAllStudentsSortedByCreatedAt() { return studentRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")); }
+
+    @Transactional
+    public List<Student> getAllStudentsFilteredByApprenticeship(String filtervalue) { return studentRepository.findByApprenticeship(filtervalue); }
 
 }
